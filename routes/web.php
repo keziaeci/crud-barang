@@ -26,8 +26,14 @@ Route::get('/', function () {
     ]);
 });
 
+Route::controller(BarangController::class)->group(function () {
+    Route::get('/dashboard', [BarangController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/delete/{barang:id}', [BarangController::class,'destroy'])->name('delete');
+    Route::get('/edit/{barang:id}', [BarangController::class,'edit'])->name('edit');
+});
+
+
 // ]); //ini punya sp njir haous aj
-Route::get('/dashboard', [BarangController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

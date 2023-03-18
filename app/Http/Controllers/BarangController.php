@@ -15,16 +15,16 @@ class BarangController extends Controller
      */
     public function index()
     {
- //btw kok gaisa di serve , cara run how
-//  hee emg gk bs, cmn aku sg bisa tapi error disini , innertiaview undefined
-// php hoekkskdksakdas
-// oke done
-//iso kah aku kepo asem gaisa lihat, mending dc sharescreen awkwo,akw 
-// selain dc ono rak , linux ku pekok nggo dc
-//gmeet :v 
-// okok bikin cik
-        return Inertia::render('Dashboard' , [
-            'items' => Barang::all()
+        //btw kok gaisa di serve , cara run how
+        //  hee emg gk bs, cmn aku sg bisa tapi error disini , innertiaview undefined
+        // php hoekkskdksakdas
+        // oke done
+        //iso kah aku kepo asem gaisa lihat, mending dc sharescreen awkwo,akw 
+        // selain dc ono rak , linux ku pekok nggo dc
+        //gmeet :v 
+        // okok bikin cik
+        return Inertia::render('Dashboard', [
+            'items' => Barang::latest()->get()
         ]);
     }
 
@@ -57,7 +57,9 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        return Inertia::render('Edit', [
+            'items' => $barang
+        ]);
     }
 
     /**
@@ -73,6 +75,7 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        //
+        Barang::where('id', $barang->id)->delete();
+        return back();
     }
 }
