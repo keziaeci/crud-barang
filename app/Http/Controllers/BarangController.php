@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Response;
+use Inertia\Inertia;
 use App\Models\Barang;
 use App\Http\Requests\StoreBarangRequest;
 use App\Http\Requests\UpdateBarangRequest;
@@ -13,7 +15,17 @@ class BarangController extends Controller
      */
     public function index()
     {
-        // return view('')
+ //btw kok gaisa di serve , cara run how
+//  hee emg gk bs, cmn aku sg bisa tapi error disini , innertiaview undefined
+// php hoekkskdksakdas
+// oke done
+//iso kah aku kepo asem gaisa lihat, mending dc sharescreen awkwo,akw 
+// selain dc ono rak , linux ku pekok nggo dc
+//gmeet :v 
+// okok bikin cik
+        return Inertia::render('Dashboard' , [
+            'items' => Barang::all()
+        ]);
     }
 
     /**

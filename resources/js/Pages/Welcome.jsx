@@ -1,6 +1,7 @@
 import { Link, Head } from '@inertiajs/react';
 
 export default function Welcome(props) {
+    console.log(props.auth.user);
     return (
         <>
             <Head title="Welcome" />

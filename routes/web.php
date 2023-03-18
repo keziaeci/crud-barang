@@ -18,13 +18,16 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('home', [
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION, 
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// ]); //ini punya sp njir haous aj
+Route::get('/dashboard', [BarangController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,6 +36,26 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+// Route::get('/barang', [BarangController::class, 'index'])->name('barang'); //kek ini, trus nanti ke pass data ne dari kontroler
 
 require __DIR__.'/auth.php';
+// rusak okeoekoeke
+//bentar nyoba
+
+//function () {
+    // return Inertia::render('Dashboard',[
+    //  render barang controller here
+        // rak ngene, kudu ng contorller tak hapus ya
+        // jgn dihapus jir knp harus dikasi kontroler kek yang barang,
+        // oke coba cik
+        //bikin baru wae
+        //route e 
+        // koe iso buka folder kan, edit ae 
+        //folder ap jir
+
+        // yo directory file iki,, atur ae aku cmn view nnti
+        //berarti ga disini? emang nek aku ngubah ng punyaku, disini keubah? 
+        //  jajal ng resouces, ono file test.jsx gak, bagian pages
+        //ono
+        // brarti iki file directory ku, dudu gonanmu
+        //wait hm
