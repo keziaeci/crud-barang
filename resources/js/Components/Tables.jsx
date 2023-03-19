@@ -1,26 +1,30 @@
 import React from "react";
 import { Link, router } from "@inertiajs/react";
-// import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 const Tables = (props) => {
     const option = ["ID", "Name", "Description", "Action"];
+    const MySwal = withReactContent(Swal);
 
-    // const deleteItem = async (id, nama) => {
-    //     MySwal.fire({
-    //         title: "Are you sure?",
-    //         text: `You are about to delete ${nama}.`,
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#d33",
-    //         cancelButtonColor: "#3085d6",
-    //         confirmButtonText: "Yes, delete it!",
-    //       }).then((result) => {
-    //         if (result.isConfirmed) {
-    //           Inertia.get(`/delete/${id}`).then(() => {
-    //             Inertia.reload();
-    //             });
-    //         }
-    //       });
-    // };
+
+    const deletePost = async (id, nama) => {
+        MySwal.fire({
+            title: "Apakah kamu yakin?",
+            text: `Kamu akan menghapus ${nama}.`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Ya, hapus!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                router.get(`/delete/${id}`).then(() => {
+                    router.reload();
+                });
+            }
+        });
+    };
 
     return (
         <div className="overflow-x-auto">
@@ -56,16 +60,16 @@ const Tables = (props) => {
                                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                         Edit
                                     </button>
-                                    <Link href={`/delete/${item.id}`}>
+
                                     <button
+                                        type="submit"
                                         onClick={() =>
-                                            deleteItem(item.id, item.name)
+                                            deletePost(item.id, item.name)
                                         }
                                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                     >
                                         Delete
                                     </button>
-                                    </Link>
                                 </div>
                             </td>
                         </tr>
