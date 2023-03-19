@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Route::controller(BarangController::class)->group(function () {
     Route::get('/dashboard', [BarangController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-    Route::get('/delete/{barang:id}', [BarangController::class,'destroy'])->name('delete');
+    Route::delete('/delete/{barang:id}', [BarangController::class,'destroy'])->name('delete');
     Route::get('/edit/{barang:id}', [BarangController::class,'edit'])->name('edit');
 });
 
