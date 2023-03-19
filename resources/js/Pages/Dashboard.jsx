@@ -11,7 +11,7 @@ export default function Dashboard(props) {
     useEffect(() => {
         setTimeout(() => {
             setLoggedIn((prevState) => !prevState);
-        }, 1500);
+        }, 2500);
     }, []);
     return (
         <AuthenticatedLayout
@@ -28,9 +28,13 @@ export default function Dashboard(props) {
             <div className="py-12 m-5 md:m-0">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     {getLoggedIn ? (
-                        <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg transition-all duration-300">
-                            <div className="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-                                You're logged in!
+                        <div className="toast toast-top toast-center">
+                            <div className="alert alert-success w-48">
+                                <div className="flex flex-row items-center justify-center w-full">
+                                    <span className="font-bold">
+                                        Halo, {props.auth.user.name}!
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     ) : null}
