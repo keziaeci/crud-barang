@@ -19,9 +19,7 @@ const Tables = (props) => {
             confirmButtonText: "Ya, hapus!",
         }).then((result) => {
             if (result.isConfirmed) {
-                router.get(`/delete/${id}`).then(() => {
-                    router.reload();
-                });
+                router.get(`/delete/${id}`);
             }
         });
     };
