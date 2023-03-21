@@ -30,6 +30,8 @@ Route::controller(BarangController::class)->group(function () {
     Route::get('/dashboard', [BarangController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
     Route::delete('/delete/{barang:id}', [BarangController::class,'destroy'])->name('delete');
     Route::get('/edit/{barang:id}', [BarangController::class,'edit'])->name('edit');
+    Route::get('/create/{barang:id}', [BarangController::class,'create'])->name('create');
+    Route::post('/store/{barang:id}', [BarangController::class,'store'])->name('store');
 });
 
 

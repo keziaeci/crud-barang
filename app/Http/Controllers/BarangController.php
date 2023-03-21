@@ -25,7 +25,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Create');
     }
 
     /**
@@ -33,7 +33,8 @@ class BarangController extends Controller
      */
     public function store(StoreBarangRequest $request)
     {
-        //
+        Barang::create($request->all());
+        return back();
     }
 
     /**
