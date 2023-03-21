@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Barang;
 use App\Http\Requests\StoreBarangRequest;
 use App\Http\Requests\UpdateBarangRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
@@ -33,8 +34,9 @@ class BarangController extends Controller
      */
     public function store(StoreBarangRequest $request)
     {
+
         Barang::create($request->all());
-        return back();
+        return redirect('/dashboard');
     }
 
     /**

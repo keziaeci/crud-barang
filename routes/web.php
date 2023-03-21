@@ -22,16 +22,16 @@ Route::get('/', function () {
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION, 
+        'phpVersion' => PHP_VERSION,
     ]);
 });
 
 Route::controller(BarangController::class)->group(function () {
     Route::get('/dashboard', [BarangController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-    Route::delete('/delete/{barang:id}', [BarangController::class,'destroy'])->name('delete');
-    Route::get('/edit/{barang:id}', [BarangController::class,'edit'])->name('edit');
-    Route::get('/create', [BarangController::class,'create'])->name('create');
-    Route::post('/store', [BarangController::class,'store'])->name('store');
+    Route::delete('/delete/{barang:id}', [BarangController::class, 'destroy'])->name('delete');
+    Route::get('/edit/{barang:id}', [BarangController::class, 'edit'])->name('edit');
+    Route::get('/create', [BarangController::class, 'create'])->name('create');
+    Route::post('/store', [BarangController::class, 'store'])->name('store');
 });
 
 
@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 
 // Route::get('/barang', [BarangController::class, 'index'])->name('barang'); //kek ini, trus nanti ke pass data ne dari kontroler
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 // rusak okeoekoeke
 //bentar nyoba
 
