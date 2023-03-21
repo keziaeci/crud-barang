@@ -1,10 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Head, Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { router } from "@inertiajs/react";
 
 const Create = (props) => {
     console.log(props);
+
+    useEffect(() => {
+        if (!props.auth.user) {
+            router.get("/login");
+        }},[] );
 
     const handlerSubmit = (e) => {
         e.preventDefault();
@@ -13,6 +18,7 @@ const Create = (props) => {
         router.post("/store", { name, description });
     };
 
+    const formRef = useRef();
     const nameRef = useRef("");
     const descriptionRef = useRef("");
 
@@ -23,11 +29,10 @@ const Create = (props) => {
         descriptionRef.current = e.target.value;
     };
     const clearHandler = () => {
-        nameRef.current = "";
-        descriptionRef.current = "";
+        formRef.current.reset();
     };
 
-    return (
+    return props.auth.user ? (
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
@@ -41,7 +46,7 @@ const Create = (props) => {
 
             <div className="py-6 m-5 md:m-0">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <form onSubmit={handlerSubmit}>
+                    <form ref={formRef} onSubmit={handlerSubmit}>
                         <div className="mb-4">
                             <label
                                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -79,7 +84,7 @@ const Create = (props) => {
                 </div>
             </div>
         </AuthenticatedLayout>
-    );
+    ) : null;
 };
 
 export default Create;
@@ -89,6 +94,7 @@ function ButtonComponent({ clearHandler }) {
         <div className="flex flex-row justify-between mb-4">
             <button
                 onClick={clearHandler}
+                type="reset"
                 className="btn btn-warning text-black text-opacity-70"
             >
                 Clear All
